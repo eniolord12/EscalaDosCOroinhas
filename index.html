@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Coroinhas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Cadastro de Coroinha</h1>
+            <p>Preencha os dados e as restrições para a geração automática da escala.</p>
+        </header>
+
+        <form id="formCadastro">
+
+            <!-- SEÇÃO 1: Identificação Básica -->
+            <fieldset>
+                <legend>1. Identificação Básica</legend>
+
+                <div class="form-group">
+                    <label for="nomeCompleto">Nome Completo</label>
+                    <input type="text" id="nomeCompleto" placeholder="Ex: João da Silva" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nomeEscala">Nome na Escala (Apelido)</label>
+                    <input type="text" id="nomeEscala" placeholder="Ex: João S." required>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="statusAtivo" checked>
+                    <label for="statusAtivo" class="status-label">Coroinha Ativo (Participando das escalas)</label>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 2: Bloqueios e Restrições -->
+            <fieldset>
+                <legend>2. Restrições de Dias (Quando NÃO pode)</legend>
+
+                <div class="form-group">
+                    <label>Dias da semana bloqueados</label>
+                    <div class="dias-semana">
+                        <label><input type="checkbox" value="Segunda"> Seg</label>
+                        <label><input type="checkbox" value="Terca"> Ter</label>
+                        <label><input type="checkbox" value="Quarta"> Qua</label>
+                        <label><input type="checkbox" value="Quinta"> Qui</label>
+                        <label><input type="checkbox" value="Sexta"> Sex</label>
+                        <label><input type="checkbox" value="Sabado"> Sáb</label>
+                        <label><input type="checkbox" value="Domingo"> Dom</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="datasBloqueadas">Datas específicas bloqueadas no mês</label>
+                    <input type="text" id="datasBloqueadas" placeholder="Ex: 12, 15, 25">
+                    <small>Separe os dias por vírgula.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Bloqueio de semana específica (Ex: Não pode no 2º Domingo)</label>
+                    <div class="row">
+                        <select id="bloqueioSemana">
+                            <option value="">Selecione a semana...</option>
+                            <option value="1">1ª Semana</option>
+                            <option value="2">2ª Semana</option>
+                            <option value="3">3ª Semana</option>
+                            <option value="4">4ª Semana</option>
+                            <option value="5">Última Semana</option>
+                        </select>
+                        <select id="bloqueioDiaSemana">
+                            <option value="">Selecione o dia...</option>
+                            <option value="Sabado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                            <option value="Segunda">Segunda-feira</option>
+                            <option value="Terca">Terça-feira</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- SEÇÃO 3: Preferências e Vínculos -->
+            <fieldset>
+                <legend>3. Regras Fixas e Vínculos Familiares</legend>
+
+                <div class="form-group">
+                    <label>Dia Fixo (Serve SEMPRE neste dia)</label>
+                    <div class="row">
+                        <select id="fixoSemana">
+                            <option value="">Selecione a semana...</option>
+                            <option value="1">1ª Semana</option>
+                            <option value="2">2ª Semana</option>
+                            <option value="3">3ª Semana</option>
+                            <option value="4">4ª Semana</option>
+                            <option value="5">Última Semana</option>
+                        </select>
+                        <select id="fixoDiaSemana">
+                            <option value="">Selecione o dia...</option>
+                            <option value="Domingo">Domingo</option>
+                            <option value="Sabado">Sábado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vinculoIrmao">Vínculo (Irmão/Primo para servir junto)</label>
+                    <select id="vinculoIrmao">
+                        <option value="">Nenhum vínculo (Serve sozinho)</option>
+                        <!-- Aqui o JavaScript carregaria os nomes dos outros coroinhas já cadastrados -->
+                        <option value="2">Pedro Silva</option>
+                        <option value="3">Maria Souza</option>
+                    </select>
+                    <small>Selecione apenas se eles forem obrigados a servir na mesma missa.</small>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn-submit">Salvar Coroinha</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
