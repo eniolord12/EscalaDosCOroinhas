@@ -1,0 +1,191 @@
+:root {
+    --primary-color: #0f3c5c;
+    /* Azul escuro sóbrio */
+    --secondary-color: #2b7aab;
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --border-color: #dce1e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #fff;
+    max-width: 650px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #fafbfc;
+}
+
+legend {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-color);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: var(--secondary-color);
+}
+
+small {
+    display: block;
+    margin-top: 5px;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.row select {
+    flex: 1;
+}
+
+/* Estilização dos Checkboxes */
+.dias-semana {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dias-semana label {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0;
+    transition: background-color 0.2s;
+}
+
+.dias-semana label:hover {
+    background-color: #eef2f5;
+}
+
+.dias-semana input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.status-label {
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Botão de Envio */
+.btn-submit {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 500px) {
+    .row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dias-semana label {
+        flex: 1 1 30%;
+        justify-content: center;
+    }
+}
