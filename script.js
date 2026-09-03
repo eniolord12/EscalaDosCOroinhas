@@ -69,19 +69,17 @@ document.getElementById('formCadastro').addEventListener('submit', function (eve
     console.log(JSON.stringify(dadosCoroinha, null, 2));
 
     // Exemplo de como enviar isso para o seu Python (via Fetch API)
-    /*
-    fetch('http://SEU_SERVIDOR_PYTHON/api/cadastrar_coroinha', {
+    fetch('http://localhost:5000/api/cadastrar_coroinha', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(dadosCoroinha)
     })
-    .then(response => response.json())
-    .then(data => {
-        alert('Coroinha cadastrado com sucesso!');
-        document.getElementById('formCadastro').reset(); // Limpa o formulário
-    })
-    .catch(error => console.error('Erro:', error));
-    */
+        .then(response => response.json())
+        .then(data => {
+            alert(data.mensagem); // Mostra a mensagem enviada pelo Python
+            document.getElementById('formCadastro').reset(); // Limpa a tela
+        })
+        .catch(error => console.error('Erro na comunicação com a API:', error));
 });
