@@ -4,25 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lista de coroinhas carregada de um arquivo JSON.">
+    <meta name="description" content="Escala mensal dos coroinhas.">
     <meta name="author" content="Enio Antonio S. Júnior">
-    <title>Coroinhas cadastrados</title>
+    <title>Escala dos Coroinhas | Outubro 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Coroinhas cadastrados</h1>
-            <p>Os dados abaixo são carregados diretamente de <strong>dados_coroinhas.json</strong>.</p>
+    <div class="app-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Planejamento mensal</p>
+                <h1>Escala dos coroinhas</h1>
+                <p class="subtitle">Organize os serviços de outubro antes de publicar a escala.</p>
+            </div>
+            <div class="header-status" aria-live="polite">
+                <span class="status-dot"></span>
+                <span id="resumoCoroinhas">Carregando disponibilidade...</span>
+            </div>
         </header>
 
-        <section class="cadastros" aria-labelledby="tituloLista">
-            <h2 id="tituloLista">Lista atual</h2>
-            <ul id="listaCoroinhas" aria-live="polite">
-                <li class="empty-state">Carregando cadastros...</li>
-            </ul>
-        </section>
+        <main>
+            <section class="month-toolbar" aria-label="Controles da escala">
+                <div>
+                    <p class="eyebrow">Mês da escala</p>
+                    <h2>Outubro <span>2026</span></h2>
+                </div>
+                <div class="toolbar-actions">
+                    <button type="button" class="button button-secondary" id="hojeButton">Ir para hoje</button>
+                    <button type="button" class="button button-primary" id="imprimirButton">Imprimir escala</button>
+                </div>
+            </section>
+
+            <section class="calendar-panel" aria-labelledby="tituloCalendario">
+                <div class="calendar-heading">
+                    <div>
+                        <p class="eyebrow">Visão mensal</p>
+                        <h2 id="tituloCalendario">Serviços de outubro</h2>
+                    </div>
+                    <span class="calendar-note">As regras de distribuição serão aplicadas na próxima etapa.</span>
+                </div>
+                <div class="calendar" id="calendario" aria-label="Calendário de outubro de 2026"></div>
+            </section>
+        </main>
     </div>
 
     <script src="script.js"></script>
