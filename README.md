@@ -47,15 +47,21 @@ O sorteio considera disponibilidade, dias fixos, vínculos, equilíbrio de
 participações e evita escalar a mesma pessoa em dias consecutivos. A escala
 publicada fica em `escala_mensal.json`.
 
-Para proteger a área administrativa, defina uma senha antes de iniciar o
-servidor. No PowerShell:
+Para proteger a área administrativa, a senha configurada é exatamente:
 
-```powershell
-$env:ESCALA_ADMIN_PASSWORD = "sua-senha"
+```text
+CFojp-1992!
+```
+
+A confirmação é sensível a maiúsculas, minúsculas, hífen e exclamação. Portanto,
+somente a sequência idêntica será aceita.
+
+Para iniciar o servidor:
+
+```text
 python app.py
 ```
 
-Sem essa configuração, a senha local padrão é `admin123`. Somente quem tiver a
-senha consegue gerar e substituir a escala; os demais usuários apenas
-visualizam a escala publicada.
+Somente quem tiver essa senha consegue gerar e substituir a escala; os demais
+usuários apenas visualizam a escala publicada.
 

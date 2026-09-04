@@ -13,7 +13,7 @@ app.secret_key = os.environ.get('ESCALA_SECRET_KEY', 'chave-local-da-escala')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ARQUIVO_JSON = os.path.join(BASE_DIR, 'dados_coroinhas.json')
 ARQUIVO_ESCALA = os.path.join(BASE_DIR, 'escala_mensal.json')
-SENHA_ADMIN = os.environ.get('ESCALA_ADMIN_PASSWORD', 'admin123')
+SENHA_ADMIN = 'CFojp-1992!'
 
 CONFIGURACAO_MISSA = {
     2: {'dia': 'Quarta-feira', 'horario': '06:00', 'quantidade': 4},
