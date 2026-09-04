@@ -47,6 +47,45 @@ header p {
     font-size: 0.95rem;
 }
 
+.cadastros h2 {
+    color: var(--primary-color);
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+}
+
+#listaCoroinhas {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+}
+
+#listaCoroinhas li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #fafbfc;
+}
+
+#listaCoroinhas span {
+    color: #27ae60;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.empty-state,
+.error-state {
+    color: #666;
+    justify-content: center;
+}
+
+.error-state {
+    color: #b42318;
+}
+
 fieldset {
     border: 1px solid var(--border-color);
     border-radius: 8px;

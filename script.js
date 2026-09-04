@@ -68,18 +68,37 @@ document.getElementById('formCadastro').addEventListener('submit', function (eve
     console.log("JSON gerado com sucesso:");
     console.log(JSON.stringify(dadosCoroinha, null, 2));
 
-    // Exemplo de como enviar isso para o seu Python (via Fetch API)
-    fetch('http://localhost:5000/api/cadastrar_coroinha', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dadosCoroinha)
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert(data.mensagem); // Mostra a mensagem enviada pelo Python
-            document.getElementById('formCadastro').reset(); // Limpa a tela
+    const listaCoroinhas = document.getElementById('listaCoroinhas');
+
+    function criarItemCoroinha(coroinha) {
+        const item = document.createElement('li');
+        const nome = coroinha.nome_escala || coroinha.nome_completo || 'Sem nome';
+        const status = coroinha.status_ativo === false ? 'Inativo' : 'Ativo';
+
+        item.innerHTML = `<strong>${nome}</strong><span>${status}</span>`;
+        return item;
+    }
+
+    fetch('/api/coroinhas')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Não foi possível carregar os cadastros.');
+            }
+            return response.json();
         })
-        .catch(error => console.error('Erro na comunicação com a API:', error));
+        .then(coroinhas => {
+            listaCoroinhas.replaceChildren();
+
+            if (!coroinhas.length) {
+                listaCoroinhas.innerHTML = '<li class="empty-state">Nenhum coroinha cadastrado no JSON.</li>';
+                return;
+            }
+
+            coroinhas.forEach(coroinha => {
+                listaCoroinhas.appendChild(criarItemCoroinha(coroinha));
+            });
+        })
+        .catch(error => {
+            listaCoroinhas.innerHTML = `<li class="error-state">${error.message}</li>`;
+        });
 });
