@@ -48,6 +48,27 @@
                     <button type="button" class="button button-primary" id="loginButton">Entrar</button>
                     <button type="button" class="button button-primary" id="sortearButton" hidden>Sortear outubro</button>
                 </div>
+                <div class="admin-workspace" id="adminWorkspace" hidden>
+                    <div class="admin-section">
+                        <p class="eyebrow">Configuração das missas</p>
+                        <h3>Defina os dias, horários e vagas</h3>
+                        <div id="configuracaoMissas" class="mass-config"></div>
+                    </div>
+                    <div class="admin-section">
+                        <p class="eyebrow">Edição manual</p>
+                        <h3>Alterar coroinhas de um serviço</h3>
+                        <div class="edit-controls">
+                            <select id="servicoParaEditar" aria-label="Serviço para editar"></select>
+                            <select id="coroinhasDoServico" multiple aria-label="Coroinhas escalados no serviço"></select>
+                            <button type="button" class="button button-secondary" id="salvarEdicaoButton">Salvar alteração</button>
+                        </div>
+                    </div>
+                    <div class="admin-section">
+                        <p class="eyebrow">Cadastros disponíveis</p>
+                        <h3>Lista de coroinhas</h3>
+                        <ul id="listaAdminCoroinhas" class="admin-names"></ul>
+                    </div>
+                </div>
             </section>
 
             <section class="calendar-panel" aria-labelledby="tituloCalendario">

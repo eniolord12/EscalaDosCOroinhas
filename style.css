@@ -415,6 +415,101 @@ body {
     padding: 10px 12px;
 }
 
+.admin-workspace {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 1fr) minmax(180px, 0.7fr);
+    gap: 24px;
+    width: 100%;
+    padding-top: 24px;
+}
+
+.admin-section {
+    border-top: 1px solid #ead8b6;
+    padding-top: 18px;
+}
+
+.admin-section h3 {
+    color: #61461e;
+    font-size: 0.98rem;
+    margin-bottom: 14px;
+}
+
+.mass-config {
+    display: grid;
+    gap: 5px;
+    max-height: 310px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.mass-row {
+    display: grid;
+    grid-template-columns: 18px minmax(68px, 1fr) 88px 62px;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 6px 0;
+}
+
+.mass-row input[type='time'],
+.mass-row input[type='number'] {
+    width: 100%;
+    border: 1px solid #d9c8a7;
+    border-radius: 4px;
+    padding: 5px;
+    color: #61461e;
+}
+
+.mass-row input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+}
+
+.mass-date {
+    color: #6e5c40;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.mass-unit {
+    color: #927c5b;
+    font-size: 0.68rem;
+}
+
+.edit-controls {
+    display: grid;
+    gap: 10px;
+}
+
+.edit-controls select {
+    background: #fff;
+    border-color: #d9c8a7;
+    color: #61461e;
+    font-size: 0.8rem;
+    padding: 9px;
+}
+
+.edit-controls select[multiple] {
+    height: 176px;
+}
+
+.admin-names {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 14px;
+    list-style: none;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.admin-names li {
+    overflow: hidden;
+    color: #6e5c40;
+    font-size: 0.76rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -551,6 +646,10 @@ body {
     .admin-actions input {
         flex: 1;
         min-width: 180px;
+    }
+
+    .admin-workspace {
+        grid-template-columns: 1fr;
     }
 }
 
