@@ -1,0 +1,120 @@
+{
+    "ano": 2026,
+    "mes": 10,
+    "minimo_mensal": 1,
+    "participacoes_anteriores": {},
+    "gerada_em": "2026-09-04T14:00:01",
+    "servicos": [
+        {
+            "data": "2026-10-01",
+            "dia": "Quinta-feira",
+            "quantidade": 4,
+            "coroinha_ids": [
+                17,
+                4,
+                45,
+                36
+            ],
+            "coroinhas": [
+                "Heitor",
+                "Angelina",
+                "Miguel Souza Fonseca",
+                "Maria Eduarda Souza Fonseca"
+            ]
+        },
+        {
+            "data": "2026-10-03",
+            "dia": "Sabado",
+            "quantidade": 4,
+            "coroinha_ids": [
+                27,
+                11,
+                38,
+                37
+            ],
+            "coroinhas": [
+                "Killian Otavio",
+                "Eliza Martins Fernandes",
+                "Maria Julia",
+                "Maria Eduarda Torres"
+            ]
+        },
+        {
+            "data": "2026-10-04",
+            "dia": "Domingo",
+            "quantidade": 4,
+            "coroinha_ids": [
+                62,
+                18,
+                32,
+                21
+            ],
+            "coroinhas": [
+                "Gustavo Andrade Moreira",
+                "Helen Vitória",
+                "Maria Clara",
+                "João Lucas Gomes Silva"
+            ]
+        }
+    ],
+    "participacoes": {
+        "1": 0,
+        "2": 0,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "11": 1,
+        "12": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0,
+        "62": 1,
+        "17": 1,
+        "18": 1,
+        "19": 0,
+        "20": 0,
+        "21": 1,
+        "23": 0,
+        "24": 0,
+        "26": 0,
+        "27": 1,
+        "28": 0,
+        "29": 0,
+        "30": 0,
+        "31": 0,
+        "32": 1,
+        "33": 0,
+        "34": 0,
+        "36": 1,
+        "37": 1,
+        "38": 1,
+        "40": 0,
+        "41": 0,
+        "42": 0,
+        "43": 0,
+        "44": 0,
+        "45": 1,
+        "46": 0,
+        "47": 0,
+        "48": 0,
+        "49": 0,
+        "50": 0,
+        "51": 0,
+        "52": 0,
+        "53": 0,
+        "54": 0,
+        "55": 0,
+        "56": 0,
+        "57": 0,
+        "58": 0,
+        "60": 0,
+        "61": 0,
+        "63": 0
+    },
+    "avisos": [
+        "Abaixo do minimo de 1: Alice, Ana Julia, Bernardo Gonçalves Lourenço, Clara Helena, Cristiano, Daniel, Davi, Emanuel, Fernanda, Gabriel Lima, Gabriel Sebastião, Helena, Henrique Queiroz, José Augusto, Julia, Kemily, Laila Mariany, Lorrayne, Manuela, Maria Alice Oliveira Costa, Maria Eduarda Lima, Maria Eduarda Procopio, Matheus, Micael, Miguel César, Miguel Gonçalves, Miguel José, Milena Carolina, Murilo, Murilo Augusto, Nathalia, Nicolas Gabriel, Pedro Davi, Pedro Henrique, Pedro Miguel, Rayan Miguel Costa Mendes, Romario, Ruan Pietro, Sophia Mendes Pereira, Thayná Cristina, Valentyne, Vitória de Araújo Carvalho, Vitória Emanuely."
+    ]
+}

@@ -1,90 +1,64 @@
 from datetime import date, datetime, timedelta
-from flask import Flask, jsonify, request, send_from_directory, session
 import json
-import os
 import random
+import unicodedata
+from pathlib import Path
 
-app = Flask(__name__)
-app.secret_key = os.environ.get('ESCALA_SECRET_KEY', 'chave-local-da-escala')
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ARQUIVO_JSON = os.path.join(BASE_DIR, 'dados_coroinhas.json')
-ARQUIVO_ESCALA = os.path.join(BASE_DIR, 'escala_mensal.json')
-PASTA_ESCALAS = os.path.join(BASE_DIR, 'escalas')
-SENHA_ADMIN = 'CFojp-1992!'
+BASE_DIR = Path(__file__).resolve().parent
+ARQUIVO_DADOS = BASE_DIR / 'dados_coroinhas.json'
+PASTA_ESCALAS = BASE_DIR / 'escalas'
 
-CONFIGURACAO_MISSA = {
-    2: {'dia': 'Quarta-feira', 'horario': '06:00', 'quantidade': 4},
-    3: {'dia': 'Quinta-feira', 'horario': '19:30', 'quantidade': 8},
-    5: {'dia': 'Sábado', 'horario': '19:00', 'quantidade': 10},
-    6: {'dia': 'Domingo', 'horario': '19:00', 'quantidade': 10},
+DIAS_SEMANA = {
+    0: 'Segunda-feira', 1: 'Terça-feira', 2: 'Quarta-feira',
+    3: 'Quinta-feira', 4: 'Sexta-feira', 5: 'Sábado', 6: 'Domingo',
 }
+MESES = (
+    'JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO',
+    'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO',
+)
 
-DIA_JSON_POR_WEEKDAY = {
-    0: 'Domingo', 1: 'Segunda', 2: 'Quarta', 3: 'Quinta',
-    4: 'Sexta', 5: 'Sabado', 6: 'Domingo',
-}
+
+def sem_acento(valor):
+    texto = unicodedata.normalize('NFD', str(valor))
+    return ''.join(char for char in texto if unicodedata.category(char) != 'Mn').lower()
+
 
 def carregar_dados():
-    """Lê o arquivo JSON existente ou retorna uma lista vazia se não existir."""
-    if os.path.exists(ARQUIVO_JSON):
-        with open(ARQUIVO_JSON, 'r', encoding='utf-8') as f:
-            try:
-                return json.load(f)
-            except json.JSONDecodeError:
-                return []
-    return []
-
-def caminho_escala(ano, mes):
-    return os.path.join(PASTA_ESCALAS, f'escala_{ano}_{mes:02d}.json')
-
-
-def carregar_escala(ano=None, mes=None):
-    arquivo = ARQUIVO_ESCALA if ano is None or mes is None else caminho_escala(ano, mes)
-    if ano == 2026 and mes == 10 and not os.path.exists(arquivo):
-        arquivo = ARQUIVO_ESCALA
-    if not os.path.exists(arquivo):
-        return None
     try:
-        with open(arquivo, 'r', encoding='utf-8') as escala:
-            return json.load(escala)
-    except json.JSONDecodeError:
-        return None
+        with ARQUIVO_DADOS.open('r', encoding='utf-8') as arquivo:
+            dados = json.load(arquivo)
+    except (FileNotFoundError, json.JSONDecodeError) as erro:
+        raise RuntimeError(f'Nao foi possivel ler {ARQUIVO_DADOS.name}: {erro}') from erro
+    if not isinstance(dados, list):
+        raise RuntimeError(f'{ARQUIVO_DADOS.name} deve conter uma lista de coroinhas.')
+    return [item for item in dados if item.get('status_ativo', True)]
 
 
-def salvar_escala(escala):
-    os.makedirs(PASTA_ESCALAS, exist_ok=True)
-    arquivo_destino = caminho_escala(escala['ano'], escala['mes'])
-    with open(arquivo_destino, 'w', encoding='utf-8') as arquivo:
-        json.dump(escala, arquivo, ensure_ascii=False, indent=4)
-
-
-def esta_disponivel(coroinha, data):
+def esta_disponivel(coroinha, data_atual):
     bloqueios = coroinha.get('bloqueios') or {}
-    dia = DIA_JSON_POR_WEEKDAY[data.weekday()]
-    if dia in bloqueios.get('dias_semana', []):
-        return False
-    if data.day in bloqueios.get('datas_especificas', []):
-        return False
-    return True
+    dia = sem_acento(DIAS_SEMANA[data_atual.weekday()])
+    dias_bloqueados = {sem_acento(item) for item in bloqueios.get('dias_semana', [])}
+    datas_bloqueadas = {int(item) for item in bloqueios.get('datas_especificas', [])}
+    return dia not in dias_bloqueados and data_atual.day not in datas_bloqueadas
 
 
 def grupos_de_coroinhas(coroinhas):
-    por_id = {coroinha['id']: coroinha for coroinha in coroinhas}
-    relacionados = {coroinha['id']: set() for coroinha in coroinhas}
-    for coroinha in coroinhas:
-        vinculo_id = coroinha.get('vinculo_id')
+    por_id = {item['id']: item for item in coroinhas}
+    relacionados = {item['id']: set() for item in coroinhas}
+    for item in coroinhas:
+        vinculo_id = item.get('vinculo_id')
         if vinculo_id in por_id:
-            relacionados[coroinha['id']].add(vinculo_id)
-            relacionados[vinculo_id].add(coroinha['id'])
+            relacionados[item['id']].add(vinculo_id)
+            relacionados[vinculo_id].add(item['id'])
+
     grupos = []
     visitados = set()
-
-    for coroinha in coroinhas:
-        if coroinha['id'] in visitados:
+    for item in coroinhas:
+        if item['id'] in visitados:
             continue
         ids_grupo = set()
-        fila = [coroinha['id']]
+        fila = [item['id']]
         while fila:
             id_atual = fila.pop()
             if id_atual in ids_grupo:
@@ -96,201 +70,240 @@ def grupos_de_coroinhas(coroinhas):
     return grupos
 
 
-def semana_do_mes(data):
-    return ((data.day - 1) // 7) + 1
+def semana_do_mes(data_atual):
+    return ((data_atual.day - 1) // 7) + 1
 
 
-def grupo_tem_dia_fixo(grupo, data):
-    dia = DIA_JSON_POR_WEEKDAY[data.weekday()]
-    semana = semana_do_mes(data)
+def grupo_tem_dia_fixo(grupo, data_atual):
+    dia_atual = sem_acento(DIAS_SEMANA[data_atual.weekday()])
+    semana_atual = semana_do_mes(data_atual)
     return any(
-        regra.get('semana') == semana and regra.get('dia') == dia
+        int(regra.get('semana', -1)) == semana_atual
+        and sem_acento(regra.get('dia', '')) == dia_atual
         for item in grupo
         for regra in item.get('fixos', [])
     )
 
 
-def servicos_padrao(ano, mes):
-    primeiro_dia = date(ano, mes, 1)
-    ultimo_dia = date(ano + (mes == 12), 1 if mes == 12 else mes + 1, 1) - timedelta(days=1)
-    servicos = []
-    data_atual = primeiro_dia
-    while data_atual <= ultimo_dia:
-        configuracao = CONFIGURACAO_MISSA.get(data_atual.weekday())
-        if configuracao:
-            servicos.append({
-                'data': data_atual.isoformat(),
-                'dia': configuracao['dia'],
-                'horario': configuracao['horario'],
-                'quantidade': configuracao['quantidade'],
-            })
-        data_atual += timedelta(days=1)
-    return servicos
+def datas_das_missas(ano, mes, semanas, quantidades):
+    ultimo_dia = (date(ano + (mes == 12), 1 if mes == 12 else mes + 1, 1)
+                  - timedelta(days=1)).day
+    datas = []
+    for dia_do_mes in range(1, ultimo_dia + 1):
+        data_atual = date(ano, mes, dia_do_mes)
+        dia_semana = data_atual.weekday()
+        semana = semana_do_mes(data_atual)
+        if dia_semana in quantidades and semana <= semanas:
+            datas.append(data_atual)
+    return datas
 
 
-def sortear_escala(ano, mes, servicos_configurados=None):
-    coroinhas = [item for item in carregar_dados() if item.get('status_ativo', True)]
+def sortear_escala(
+    ano, mes, semanas, quantidades, minimo_mensal, participacoes_anteriores=None,
+):
+    coroinhas = carregar_dados()
     grupos = grupos_de_coroinhas(coroinhas)
-    quantidade_por_id = {item['id']: 0 for item in coroinhas}
+    participacoes_anteriores = participacoes_anteriores or {}
+    participacoes = {str(item['id']): 0 for item in coroinhas}
     ultima_data_por_id = {}
-    servicos = []
     avisos = []
-    if servicos_configurados is None:
-        servicos_configurados = servicos_padrao(ano, mes)
-    for servico_configurado in sorted(servicos_configurados, key=lambda item: item['data']):
-        data_atual = date.fromisoformat(servico_configurado['data'])
-        configuracao = {
-            'dia': servico_configurado.get('dia') or data_atual.strftime('%A'),
-            'horario': servico_configurado.get('horario', ''),
-            'quantidade': int(servico_configurado.get('quantidade', 0)),
-        }
-        if configuracao['quantidade'] > 0:
-            candidatos = []
-            fixos = []
-            for grupo in grupos:
-                if all(esta_disponivel(item, data_atual) for item in grupo):
-                    if all(ultima_data_por_id.get(item['id']) != data_atual - timedelta(days=1) for item in grupo):
-                        (fixos if grupo_tem_dia_fixo(grupo, data_atual) else candidatos).append(grupo)
+    servicos = []
 
-            random.shuffle(fixos)
-            random.shuffle(candidatos)
-            candidatos = fixos + candidatos
-            candidatos.sort(key=lambda grupo: sum(quantidade_por_id[item['id']] for item in grupo) / len(grupo))
-            escolhidos = []
-            total = 0
-            for grupo in candidatos:
-                tamanho = len(grupo)
-                if total + tamanho <= configuracao['quantidade']:
-                    escolhidos.append(grupo)
-                    total += tamanho
-                if total == configuracao['quantidade']:
-                    break
-
-            if total < configuracao['quantidade']:
-                avisos.append(f'{data_atual.strftime("%d/%m/%Y")}: foram encontrados {total} de {configuracao["quantidade"]} coroinhas disponíveis.')
-
-            nomes = []
-            ids = []
-            for grupo in escolhidos:
-                for item in grupo:
-                    ids.append(item['id'])
-                    nomes.append(item.get('nome_escala') or item.get('nome_completo'))
-                    quantidade_por_id[item['id']] += 1
-                    ultima_data_por_id[item['id']] = data_atual
-            servicos.append({
-                'data': data_atual.isoformat(),
-                'dia': configuracao['dia'],
-                'horario': configuracao['horario'],
-                'quantidade': configuracao['quantidade'],
-                'coroinha_ids': ids,
-                'coroinhas': nomes,
+    datas = datas_das_missas(ano, mes, semanas, quantidades)
+    for data_atual in datas:
+        quantidade_por_missa = quantidades[data_atual.weekday()]
+        candidatos = []
+        for grupo in grupos:
+            ids = [str(item['id']) for item in grupo]
+            if not all(esta_disponivel(item, data_atual) for item in grupo):
+                continue
+            if any(ultima_data_por_id.get(id_atual) == data_atual - timedelta(days=1) for id_atual in ids):
+                continue
+            candidatos.append({
+                'grupo': grupo,
+                'fixo': grupo_tem_dia_fixo(grupo, data_atual),
+                'tamanho': len(grupo),
             })
+
+        random.shuffle(candidatos)
+        escolhidos = []
+        total = 0
+        candidatos.sort(key=lambda item: (
+            not item['fixo'],
+            sum(
+                participacoes_anteriores.get(str(pessoa['id']), 0)
+                for pessoa in item['grupo']
+            ),
+            -sum(
+                participacoes[str(pessoa['id'])] < minimo_mensal
+                for pessoa in item['grupo']
+            ),
+            min(participacoes[str(pessoa['id'])] for pessoa in item['grupo']),
+        ))
+        for candidato in candidatos:
+            if total + candidato['tamanho'] <= quantidade_por_missa:
+                escolhidos.append(candidato['grupo'])
+                total += candidato['tamanho']
+            if total == quantidade_por_missa:
+                break
+
+        if total < quantidade_por_missa:
+            avisos.append(
+                f'{data_atual:%d/%m/%Y}: foram encontradas {total} de '
+                f'{quantidade_por_missa} vagas possiveis.'
+            )
+
+        ids_escolhidos = []
+        nomes_escolhidos = []
+        for grupo in escolhidos:
+            for item in grupo:
+                id_atual = str(item['id'])
+                ids_escolhidos.append(item['id'])
+                nomes_escolhidos.append(item.get('nome_escala') or item.get('nome_completo'))
+                participacoes[id_atual] += 1
+                ultima_data_por_id[id_atual] = data_atual
+
+        servicos.append({
+            'data': data_atual.isoformat(),
+            'dia': DIAS_SEMANA[data_atual.weekday()],
+            'quantidade': quantidades[data_atual.weekday()],
+            'coroinha_ids': ids_escolhidos,
+            'coroinhas': nomes_escolhidos,
+        })
+
+    abaixo_do_minimo = [
+        item for item in coroinhas if participacoes[str(item['id'])] < minimo_mensal
+    ]
+    if abaixo_do_minimo:
+        nomes = ', '.join(item.get('nome_escala') or item.get('nome_completo') for item in abaixo_do_minimo)
+        avisos.append(f'Abaixo do minimo de {minimo_mensal}: {nomes}.')
 
     return {
         'ano': ano,
         'mes': mes,
+        'semanas': semanas,
+        'quantidades_por_dia': quantidades,
+        'minimo_mensal': minimo_mensal,
+        'participacoes_anteriores': participacoes_anteriores,
         'gerada_em': datetime.now().isoformat(timespec='seconds'),
         'servicos': servicos,
-        'participacoes': quantidade_por_id,
+        'participacoes': participacoes,
         'avisos': avisos,
     }
 
 
-@app.route('/')
-def pagina_inicial():
-    return send_from_directory(BASE_DIR, 'index.html')
-
-
-@app.route('/<path:arquivo>')
-def arquivos_estaticos(arquivo):
-    if arquivo not in {'style.css', 'script.js'}:
-        return jsonify({'erro': 'Arquivo não encontrado.'}), 404
-    return send_from_directory(BASE_DIR, arquivo)
-
-
-@app.route('/api/escala', methods=['GET'])
-def visualizar_escala():
-    try:
-        ano = int(request.args.get('ano', 2026))
-        mes = int(request.args.get('mes', 10))
-        if mes < 1 or mes > 12:
-            raise ValueError
-    except ValueError:
-        return jsonify({'erro': 'Ano ou mês inválido.'}), 400
-    return jsonify(carregar_escala(ano, mes) or {'ano': ano, 'mes': mes, 'servicos': [], 'avisos': []})
-
-
-def administrador_exigido():
-    return session.get('administrador')
-
-
-@app.route('/api/admin/coroinhas', methods=['GET'])
-def listar_coroinhas_admin():
-    if not administrador_exigido():
-        return jsonify({'erro': 'Faça login como administrador.'}), 401
-    return jsonify([
-        {'id': item['id'], 'nome': item.get('nome_escala') or item.get('nome_completo')}
-        for item in carregar_dados()
-        if item.get('status_ativo', True)
-    ])
-
-
-@app.route('/api/admin/login', methods=['POST'])
-def login_admin():
-    dados = request.get_json(silent=True) or {}
-    if dados.get('senha') != SENHA_ADMIN:
-        return jsonify({'erro': 'Senha inválida.'}), 401
-    session['administrador'] = True
-    return jsonify({'mensagem': 'Acesso administrativo liberado.'})
-
-
-@app.route('/api/admin/sortear', methods=['POST'])
-def gerar_escala():
-    if not administrador_exigido():
-        return jsonify({'erro': 'Faça login como administrador para sortear a escala.'}), 401
-    dados = request.get_json(silent=True) or {}
-    ano = int(dados.get('ano', 2026))
-    mes = int(dados.get('mes', 10))
-    servicos = dados.get('servicos')
-    if servicos is not None:
+def perguntar_inteiro(pergunta, minimo=None, maximo=None, padrao=None):
+    while True:
+        sufixo = f' [{padrao}]' if padrao is not None else ''
+        resposta = input(f'{pergunta}{sufixo}: ').strip()
+        if not resposta and padrao is not None:
+            return padrao
         try:
-            for servico in servicos:
-                date.fromisoformat(servico['data'])
-                if int(servico.get('quantidade', 0)) < 0:
-                    raise ValueError
-        except (KeyError, TypeError, ValueError):
-            return jsonify({'erro': 'A configuração dos serviços é inválida.'}), 400
-    escala = sortear_escala(ano, mes, servicos)
-    salvar_escala(escala)
-    return jsonify(escala)
+            valor = int(resposta)
+            if (minimo is not None and valor < minimo) or (maximo is not None and valor > maximo):
+                raise ValueError
+            return valor
+        except ValueError:
+            print(f'Informe um numero valido entre {minimo} e {maximo}.')
 
 
-@app.route('/api/admin/escala', methods=['PUT'])
-def editar_escala():
-    if not administrador_exigido():
-        return jsonify({'erro': 'Faça login como administrador.'}), 401
-    dados = request.get_json(silent=True) or {}
-    escala = carregar_escala(int(dados.get('ano', 2026)), int(dados.get('mes', 10)))
-    escala = escala or {'servicos': [], 'avisos': []}
-    servico = next((item for item in escala['servicos'] if item['data'] == dados.get('data')), None)
-    if not servico:
-        return jsonify({'erro': 'Serviço não encontrado.'}), 404
+def ler_mes():
+    nomes = {
+        'janeiro': 1, 'fevereiro': 2, 'marco': 3, 'abril': 4, 'maio': 5, 'junho': 6,
+        'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12,
+    }
+    while True:
+        resposta = sem_acento(input('Qual mes estamos? (numero ou nome): ').strip())
+        if resposta.isdigit() and 1 <= int(resposta) <= 12:
+            return int(resposta)
+        if resposta in nomes:
+            return nomes[resposta]
+        print('Informe um mes de 1 a 12 ou o nome do mes.')
 
-    coroinhas = {item['id']: item for item in carregar_dados()}
-    ids = [int(item) for item in dados.get('coroinha_ids', [])]
-    if len(ids) != len(set(ids)) or any(item_id not in coroinhas for item_id in ids):
-        return jsonify({'erro': 'A lista de coroinhas contém IDs inválidos ou repetidos.'}), 400
-    servico['coroinha_ids'] = ids
-    servico['coroinhas'] = [coroinhas[item_id].get('nome_escala') or coroinhas[item_id].get('nome_completo') for item_id in ids]
-    escala['gerada_em'] = datetime.now().isoformat(timespec='seconds')
-    escala['participacoes'] = {str(item['id']): 0 for item in coroinhas.values() if item.get('status_ativo', True)}
-    for item in escala['servicos']:
-        for item_id in item.get('coroinha_ids', []):
-            escala['participacoes'][str(item_id)] = escala['participacoes'].get(str(item_id), 0) + 1
-    salvar_escala(escala)
-    return jsonify(escala)
+
+def ler_escala_anterior(ano, mes):
+    resposta = input(
+        'Qual foi a escala do mes anterior? '
+        '(caminho do JSON ou Enter para procurar automaticamente): '
+    ).strip()
+    if resposta.lower() in {'nao', 'não', 'nenhuma'}:
+        return {}, None
+
+    if resposta:
+        caminho = Path(resposta)
+    else:
+        mes_anterior = 12 if mes == 1 else mes - 1
+        ano_anterior = ano - 1 if mes == 1 else ano
+        caminho = PASTA_ESCALAS / f'escala_{ano_anterior}_{mes_anterior:02d}.json'
+
+    if not caminho.exists():
+        print(f'Arquivo nao encontrado: {caminho}. O sorteio continuara sem escala anterior.')
+        return {}, None
+
+    try:
+        with caminho.open('r', encoding='utf-8') as arquivo:
+            escala = json.load(arquivo)
+    except (OSError, json.JSONDecodeError) as erro:
+        print(f'Nao foi possivel ler a escala anterior: {erro}')
+        return {}, None
+
+    participacoes = {str(id_atual): int(quantidade) for id_atual, quantidade in (escala.get('participacoes') or {}).items()}
+    if not participacoes:
+        for servico in escala.get('servicos', []):
+            for id_atual in servico.get('coroinha_ids', []):
+                id_texto = str(id_atual)
+                participacoes[id_texto] = participacoes.get(id_texto, 0) + 1
+    return participacoes, caminho
+
+
+def salvar_escala(escala):
+    PASTA_ESCALAS.mkdir(exist_ok=True)
+    destino = PASTA_ESCALAS / f'escala_{escala["ano"]}_{escala["mes"]:02d}.json'
+    with destino.open('w', encoding='utf-8') as arquivo:
+        json.dump(escala, arquivo, ensure_ascii=False, indent=4)
+    return destino
+
+
+def imprimir_escala(escala):
+    print(f'\n{MESES[escala["mes"] - 1]}\n')
+    for indice, servico in enumerate(escala['servicos']):
+        data_servico = date.fromisoformat(servico['data'])
+        dia_semana = DIAS_SEMANA[data_servico.weekday()].split('-')[0]
+        print(dia_semana)
+        print(data_servico.strftime('%d/%m'))
+        print('\n'.join(servico['coroinhas']))
+        if indice < len(escala['servicos']) - 1:
+            print('\n')
+
+
+def main():
+    print('=== Sorteio da escala dos coroinhas ===')
+    ano = perguntar_inteiro('Qual ano?', minimo=1, padrao=datetime.now().year)
+    mes = ler_mes()
+    participacoes_anteriores, arquivo_anterior = ler_escala_anterior(ano, mes)
+    semanas = perguntar_inteiro('Quantas semanas tem esse mes?', minimo=1, maximo=5)
+    quantidades = {}
+    for numero_dia, nome_dia in ((2, 'quarta-feira'), (3, 'quinta-feira'), (5, 'sabado'), (6, 'domingo')):
+        quantidades[numero_dia] = perguntar_inteiro(
+            f'Quantos coroinhas serao escalados na {nome_dia}?', minimo=1
+        )
+    minimo = perguntar_inteiro('Quantas vezes por mes cada coroinha deve servir no minimo?', minimo=0)
+
+    try:
+        escala = sortear_escala(
+            ano, mes, semanas, quantidades, minimo, participacoes_anteriores
+        )
+        destino = salvar_escala(escala)
+    except (RuntimeError, ValueError) as erro:
+        print(f'Erro: {erro}')
+        return
+
+    imprimir_escala(escala)
+    if escala['avisos']:
+        print('\nAvisos:')
+        for aviso in escala['avisos']:
+            print(f'- {aviso}')
+
 
 if __name__ == '__main__':
-    # Inicia o servidor na porta 5000
-    print("Servidor rodando em http://localhost:5000")
-    app.run(host='127.0.0.1', debug=True, port=5000)
+    main()

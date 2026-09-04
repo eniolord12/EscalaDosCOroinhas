@@ -1,7 +1,7 @@
 # Escala dos Coroinhas
 
-Os cadastros são mantidos manualmente em `dados_coroinhas.json`. Não é necessário
-usar banco de dados, internet, site externo ou serviço de API externo.
+Programa de terminal feito somente com Python e JSON. Não usa site, Flask,
+banco de dados ou internet.
 
 ## Como cadastrar
 
@@ -25,54 +25,29 @@ Edite o arquivo `dados_coroinhas.json` como uma lista de objetos. Exemplo:
 ]
 ```
 
-Depois de salvar o JSON, inicie o servidor:
+Depois de salvar o JSON, execute:
 
 ```text
 python app.py
 ```
-
-Acesse `http://localhost:5000`. Os registros do arquivo são usados internamente
-para montar a escala e não são exibidos aos usuários públicos.
-
-O Flask funciona somente como servidor local do computador (`127.0.0.1`). As
-rotas internas usadas pela página não acessam a internet: elas apenas leem e
-gravam os arquivos JSON do próprio projeto.
 
 ## Sorteio da escala
 
-O padrão mensal já está configurado no sistema:
+Ao iniciar, o programa pergunta o ano, o mês, qual foi a escala do mês anterior,
+quantas semanas o mês terá, quantos coroinhas serão escalados em cada quarta,
+quinta, sábado e domingo, e o mínimo mensal de cada coroinha. As missas são
+criadas automaticamente nesses quatro dias da semana. Para a escala anterior,
+informe o caminho de um JSON, deixe vazio para procurar automaticamente o
+arquivo exato do mês anterior em `escalas/` ou digite `nao` no primeiro mês.
 
-- Quarta-feira às 06:00: 4 coroinhas;
-- Quinta-feira às 19:30: 8 coroinhas;
-- Sábado às 19:00: 10 coroinhas;
-- Domingo às 19:00: 10 coroinhas.
+O sorteio considera dias da semana bloqueados, datas específicas bloqueadas,
+dias fixos, vínculos por `id`, prioridade para quem ainda não atingiu o mínimo,
+equilíbrio de participações, recompensa quem serviu menos na escala anterior e
+aplica a regra de não escalar a mesma pessoa em dias consecutivos. Quando as
+regras forem incompatíveis, o programa salva a melhor escala possível e registra
+um aviso no JSON.
 
-O sorteio considera disponibilidade, dias fixos, vínculos, equilíbrio de
-participações e evita escalar a mesma pessoa em dias consecutivos. A escala
-publicada fica em `escala_mensal.json`.
-
-Para proteger a área administrativa, a senha configurada é exatamente:
-
-```text
-CFojp-1992!
-```
-
-A confirmação é sensível a maiúsculas, minúsculas, hífen e exclamação. Portanto,
-somente a sequência idêntica será aceita.
-
-Para iniciar o servidor:
-
-```text
-python app.py
-```
-
-Somente quem tiver essa senha consegue gerar e substituir a escala; os demais
-usuários apenas visualizam a escala publicada.
-
-Na página, clique em **Área do administrador** e informe a senha. Depois do
-login, você poderá navegar pelos meses e anos, marcar ou desmarcar cada dia,
-definir horário e quantidade de vagas, consultar todos os nomes cadastrados,
-sortear a escala e alterar manualmente os coroinhas de qualquer serviço já
-publicado. Cada escala mensal fica salva separadamente na pasta `escalas`, sem
-substituir meses anteriores ou posteriores.
+Cada escala é salva em `escalas/escala_ANO_MES.json`. O cadastro continua sendo
+mantido manualmente em `dados_coroinhas.json`; os campos `dias_semana`,
+`datas_especificas`, `fixos` e `vinculo_id` controlam as regras do sorteio.
 
