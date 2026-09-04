@@ -347,6 +347,12 @@ body {
     color: #285644;
 }
 
+.button-admin {
+    background: transparent;
+    border: 1px solid #c4d1ca;
+    color: #496359;
+}
+
 .button:hover {
     filter: brightness(0.94);
 }
@@ -372,6 +378,41 @@ body {
     color: #788a82;
     font-size: 0.82rem;
     text-align: right;
+}
+
+.admin-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 38px;
+    background: #fffaf0;
+    border: 1px solid #ead8b6;
+    border-top: 0;
+}
+
+.admin-panel h2 {
+    color: #61461e;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.admin-panel p:not(.eyebrow) {
+    color: #7f6c4d;
+    font-size: 0.82rem;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-actions input {
+    width: 210px;
+    border: 1px solid #d9c8a7;
+    border-radius: 6px;
+    padding: 10px 12px;
 }
 
 .calendar {
@@ -442,6 +483,22 @@ body {
     font-size: 0.74rem;
 }
 
+.assigned-list {
+    display: grid;
+    gap: 4px;
+    list-style: none;
+    margin-top: 13px;
+}
+
+.assigned-list li {
+    overflow: hidden;
+    color: #315747;
+    font-size: 0.72rem;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .slot-marker {
     width: 7px;
     height: 7px;
@@ -467,7 +524,8 @@ body {
 
     .page-header,
     .month-toolbar,
-    .calendar-heading {
+    .calendar-heading,
+    .admin-panel {
         align-items: flex-start;
         flex-direction: column;
     }
@@ -483,6 +541,16 @@ body {
 
     .calendar {
         min-width: 680px;
+    }
+
+    .admin-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .admin-actions input {
+        flex: 1;
+        min-width: 180px;
     }
 }
 

@@ -33,6 +33,20 @@
                 <div class="toolbar-actions">
                     <button type="button" class="button button-secondary" id="hojeButton">Ir para hoje</button>
                     <button type="button" class="button button-primary" id="imprimirButton">Imprimir escala</button>
+                    <button type="button" class="button button-admin" id="adminButton">Área do administrador</button>
+                </div>
+            </section>
+
+            <section class="admin-panel" id="adminPanel" hidden aria-labelledby="tituloAdmin">
+                <div>
+                    <p class="eyebrow">Acesso restrito</p>
+                    <h2 id="tituloAdmin">Gerenciar escala</h2>
+                    <p id="adminMensagem">Somente o administrador pode sortear e substituir a escala publicada.</p>
+                </div>
+                <div class="admin-actions">
+                    <input type="password" id="senhaAdmin" placeholder="Senha do administrador" aria-label="Senha do administrador">
+                    <button type="button" class="button button-primary" id="loginButton">Entrar</button>
+                    <button type="button" class="button button-primary" id="sortearButton" hidden>Sortear outubro</button>
                 </div>
             </section>
 
@@ -42,7 +56,7 @@
                         <p class="eyebrow">Visão mensal</p>
                         <h2 id="tituloCalendario">Serviços de outubro</h2>
                     </div>
-                    <span class="calendar-note">As regras de distribuição serão aplicadas na próxima etapa.</span>
+                    <span class="calendar-note" id="statusEscala">Escala ainda não sorteada</span>
                 </div>
                 <div class="calendar" id="calendario" aria-label="Calendário de outubro de 2026"></div>
             </section>

@@ -1,0 +1,537 @@
+{
+    "ano": 2026,
+    "mes": 10,
+    "gerada_em": "2026-09-04T10:51:19",
+    "servicos": [
+        {
+            "data": "2026-10-01",
+            "dia": "Quinta-feira",
+            "horario": "19:30",
+            "quantidade": 8,
+            "coroinha_ids": [
+                17,
+                4,
+                45,
+                36,
+                34,
+                58,
+                32,
+                23
+            ],
+            "coroinhas": [
+                "Heitor",
+                "Angelina",
+                "Miguel Souza Fonseca",
+                "Maria Eduarda Souza Fonseca",
+                "Maria Eduarda Procopio",
+                "Thayná Cristina",
+                "Maria Clara",
+                "José Augusto"
+            ]
+        },
+        {
+            "data": "2026-10-03",
+            "dia": "Sábado",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                57,
+                63,
+                26,
+                37,
+                60,
+                44,
+                27,
+                11,
+                38,
+                20
+            ],
+            "coroinhas": [
+                "Sophia Mendes Pereira",
+                "Vitória Emanuely",
+                "Kemily",
+                "Maria Eduarda Torres",
+                "Valentyne",
+                "Miguel José",
+                "Killian Otavio",
+                "Eliza Martins Fernandes",
+                "Maria Julia",
+                "Henrique Queiroz"
+            ]
+        },
+        {
+            "data": "2026-10-04",
+            "dia": "Domingo",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                18,
+                43,
+                31,
+                54,
+                19,
+                15,
+                52,
+                28,
+                30,
+                21
+            ],
+            "coroinhas": [
+                "Helen Vitória",
+                "Miguel Gonçalves",
+                "Maria Alice Oliveira Costa",
+                "Rayan Miguel Costa Mendes",
+                "Helena",
+                "Gabriel Lima",
+                "Pedro Henrique",
+                "Laila Mariany",
+                "Manuela",
+                "João Lucas Gomes Silva"
+            ]
+        },
+        {
+            "data": "2026-10-07",
+            "dia": "Quarta-feira",
+            "horario": "06:00",
+            "quantidade": 4,
+            "coroinha_ids": [
+                41,
+                20,
+                28,
+                31
+            ],
+            "coroinhas": [
+                "Micael",
+                "Henrique Queiroz",
+                "Laila Mariany",
+                "Maria Alice Oliveira Costa"
+            ]
+        },
+        {
+            "data": "2026-10-08",
+            "dia": "Quinta-feira",
+            "horario": "19:30",
+            "quantidade": 8,
+            "coroinha_ids": [
+                8,
+                49,
+                55,
+                62,
+                52,
+                30,
+                34,
+                58
+            ],
+            "coroinhas": [
+                "Daniel",
+                "Nathalia",
+                "Romario",
+                "Gustavo Andrade Moreira",
+                "Pedro Henrique",
+                "Manuela",
+                "Maria Eduarda Procopio",
+                "Thayná Cristina"
+            ]
+        },
+        {
+            "data": "2026-10-10",
+            "dia": "Sábado",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                16,
+                1,
+                6,
+                40,
+                9,
+                12,
+                29,
+                50,
+                61,
+                37
+            ],
+            "coroinhas": [
+                "Gabriel Sebastião",
+                "Alice",
+                "Clara Helena",
+                "Matheus",
+                "Davi",
+                "Emanuel",
+                "Lorrayne",
+                "Nicolas Gabriel",
+                "Vitória de Araújo Carvalho",
+                "Maria Eduarda Torres"
+            ]
+        },
+        {
+            "data": "2026-10-11",
+            "dia": "Domingo",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                33,
+                41,
+                17,
+                4,
+                45,
+                36,
+                62,
+                21,
+                60,
+                32
+            ],
+            "coroinhas": [
+                "Maria Eduarda Lima",
+                "Micael",
+                "Heitor",
+                "Angelina",
+                "Miguel Souza Fonseca",
+                "Maria Eduarda Souza Fonseca",
+                "Gustavo Andrade Moreira",
+                "João Lucas Gomes Silva",
+                "Valentyne",
+                "Maria Clara"
+            ]
+        },
+        {
+            "data": "2026-10-14",
+            "dia": "Quarta-feira",
+            "horario": "06:00",
+            "quantidade": 4,
+            "coroinha_ids": [
+                41,
+                28,
+                31,
+                20
+            ],
+            "coroinhas": [
+                "Micael",
+                "Laila Mariany",
+                "Maria Alice Oliveira Costa",
+                "Henrique Queiroz"
+            ]
+        },
+        {
+            "data": "2026-10-15",
+            "dia": "Quinta-feira",
+            "horario": "19:30",
+            "quantidade": 8,
+            "coroinha_ids": [
+                8,
+                49,
+                55,
+                18,
+                23,
+                54,
+                58,
+                34
+            ],
+            "coroinhas": [
+                "Daniel",
+                "Nathalia",
+                "Romario",
+                "Helen Vitória",
+                "José Augusto",
+                "Rayan Miguel Costa Mendes",
+                "Thayná Cristina",
+                "Maria Eduarda Procopio"
+            ]
+        },
+        {
+            "data": "2026-10-17",
+            "dia": "Sábado",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                1,
+                6,
+                40,
+                9,
+                12,
+                29,
+                50,
+                61,
+                63,
+                44
+            ],
+            "coroinhas": [
+                "Alice",
+                "Clara Helena",
+                "Matheus",
+                "Davi",
+                "Emanuel",
+                "Lorrayne",
+                "Nicolas Gabriel",
+                "Vitória de Araújo Carvalho",
+                "Vitória Emanuely",
+                "Miguel José"
+            ]
+        },
+        {
+            "data": "2026-10-18",
+            "dia": "Domingo",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                19,
+                15,
+                43,
+                33,
+                26,
+                57,
+                16,
+                37,
+                54,
+                62
+            ],
+            "coroinhas": [
+                "Helena",
+                "Gabriel Lima",
+                "Miguel Gonçalves",
+                "Maria Eduarda Lima",
+                "Kemily",
+                "Sophia Mendes Pereira",
+                "Gabriel Sebastião",
+                "Maria Eduarda Torres",
+                "Rayan Miguel Costa Mendes",
+                "Gustavo Andrade Moreira"
+            ]
+        },
+        {
+            "data": "2026-10-21",
+            "dia": "Quarta-feira",
+            "horario": "06:00",
+            "quantidade": 4,
+            "coroinha_ids": [
+                52,
+                28,
+                20,
+                31
+            ],
+            "coroinhas": [
+                "Pedro Henrique",
+                "Laila Mariany",
+                "Henrique Queiroz",
+                "Maria Alice Oliveira Costa"
+            ]
+        },
+        {
+            "data": "2026-10-22",
+            "dia": "Quinta-feira",
+            "horario": "19:30",
+            "quantidade": 8,
+            "coroinha_ids": [
+                30,
+                8,
+                49,
+                55,
+                17,
+                4,
+                45,
+                36
+            ],
+            "coroinhas": [
+                "Manuela",
+                "Daniel",
+                "Nathalia",
+                "Romario",
+                "Heitor",
+                "Angelina",
+                "Miguel Souza Fonseca",
+                "Maria Eduarda Souza Fonseca"
+            ]
+        },
+        {
+            "data": "2026-10-24",
+            "dia": "Sábado",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                27,
+                11,
+                38,
+                23,
+                19,
+                63,
+                16,
+                26,
+                32,
+                18
+            ],
+            "coroinhas": [
+                "Killian Otavio",
+                "Eliza Martins Fernandes",
+                "Maria Julia",
+                "José Augusto",
+                "Helena",
+                "Vitória Emanuely",
+                "Gabriel Sebastião",
+                "Kemily",
+                "Maria Clara",
+                "Helen Vitória"
+            ]
+        },
+        {
+            "data": "2026-10-25",
+            "dia": "Domingo",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                44,
+                43,
+                21,
+                15,
+                57,
+                60,
+                33,
+                34,
+                41,
+                62
+            ],
+            "coroinhas": [
+                "Miguel José",
+                "Miguel Gonçalves",
+                "João Lucas Gomes Silva",
+                "Gabriel Lima",
+                "Sophia Mendes Pereira",
+                "Valentyne",
+                "Maria Eduarda Lima",
+                "Maria Eduarda Procopio",
+                "Micael",
+                "Gustavo Andrade Moreira"
+            ]
+        },
+        {
+            "data": "2026-10-28",
+            "dia": "Quarta-feira",
+            "horario": "06:00",
+            "quantidade": 4,
+            "coroinha_ids": [
+                52,
+                31,
+                28,
+                41
+            ],
+            "coroinhas": [
+                "Pedro Henrique",
+                "Maria Alice Oliveira Costa",
+                "Laila Mariany",
+                "Micael"
+            ]
+        },
+        {
+            "data": "2026-10-29",
+            "dia": "Quinta-feira",
+            "horario": "19:30",
+            "quantidade": 8,
+            "coroinha_ids": [
+                18,
+                8,
+                49,
+                55,
+                58,
+                32,
+                30,
+                54
+            ],
+            "coroinhas": [
+                "Helen Vitória",
+                "Daniel",
+                "Nathalia",
+                "Romario",
+                "Thayná Cristina",
+                "Maria Clara",
+                "Manuela",
+                "Rayan Miguel Costa Mendes"
+            ]
+        },
+        {
+            "data": "2026-10-31",
+            "dia": "Sábado",
+            "horario": "19:00",
+            "quantidade": 10,
+            "coroinha_ids": [
+                1,
+                6,
+                40,
+                9,
+                12,
+                29,
+                50,
+                61,
+                60,
+                44
+            ],
+            "coroinhas": [
+                "Alice",
+                "Clara Helena",
+                "Matheus",
+                "Davi",
+                "Emanuel",
+                "Lorrayne",
+                "Nicolas Gabriel",
+                "Vitória de Araújo Carvalho",
+                "Valentyne",
+                "Miguel José"
+            ]
+        }
+    ],
+    "participacoes": {
+        "1": 3,
+        "2": 0,
+        "4": 3,
+        "5": 0,
+        "6": 3,
+        "7": 0,
+        "8": 4,
+        "9": 3,
+        "11": 2,
+        "12": 3,
+        "14": 0,
+        "15": 3,
+        "16": 3,
+        "62": 4,
+        "17": 3,
+        "18": 4,
+        "19": 3,
+        "20": 4,
+        "21": 3,
+        "23": 3,
+        "24": 0,
+        "26": 3,
+        "27": 2,
+        "28": 5,
+        "29": 3,
+        "30": 4,
+        "31": 5,
+        "32": 4,
+        "33": 3,
+        "34": 4,
+        "36": 3,
+        "37": 3,
+        "38": 2,
+        "40": 3,
+        "41": 5,
+        "42": 0,
+        "43": 3,
+        "44": 4,
+        "45": 3,
+        "46": 0,
+        "47": 0,
+        "48": 0,
+        "49": 4,
+        "50": 3,
+        "51": 0,
+        "52": 4,
+        "53": 0,
+        "54": 4,
+        "55": 4,
+        "56": 0,
+        "57": 3,
+        "58": 4,
+        "60": 4,
+        "61": 3,
+        "63": 3
+    },
+    "avisos": []
+}
