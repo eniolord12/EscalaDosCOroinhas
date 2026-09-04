@@ -152,6 +152,9 @@ function atualizarCoroinhasDoServico() {
 
 function ativarAreaAdmin() {
     adminLogado = true;
+    document.getElementById('welcomeScreen').hidden = true;
+    document.getElementById('appShell').hidden = false;
+    document.getElementById('adminPanel').hidden = false;
     document.getElementById('senhaAdmin').hidden = true;
     document.getElementById('loginButton').hidden = true;
     document.getElementById('sortearButton').hidden = false;
@@ -160,6 +163,33 @@ function ativarAreaAdmin() {
     carregarListaAdmin().catch(() => { adminMensagem.textContent = 'Não foi possível carregar os dados administrativos.'; });
 }
 
+function abrirAreaCoroinha() {
+    document.getElementById('welcomeScreen').hidden = true;
+    document.getElementById('appShell').hidden = false;
+}
+
+document.getElementById('acessarCoroinhaButton').addEventListener('click', abrirAreaCoroinha);
+document.getElementById('acessarAdminButton').addEventListener('click', () => {
+    document.getElementById('welcomeLogin').hidden = false;
+    document.getElementById('senhaInicial').focus();
+});
+document.getElementById('welcomeLogin').addEventListener('submit', event => {
+    event.preventDefault();
+    const senha = document.getElementById('senhaInicial').value;
+    fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ senha }),
+    }).then(response => response.json().then(data => ({ ok: response.ok, data })))
+        .then(({ ok }) => {
+            if (ok) {
+                ativarAreaAdmin();
+                return;
+            }
+            document.getElementById('loginErro').textContent = 'A senha está incorreta';
+        });
+});
+
 document.getElementById('adminButton').addEventListener('click', () => {
     const painel = document.getElementById('adminPanel');
     painel.hidden = !painel.hidden;
@@ -167,7 +197,10 @@ document.getElementById('adminButton').addEventListener('click', () => {
 document.getElementById('loginButton').addEventListener('click', () => {
     fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ senha: document.getElementById('senhaAdmin').value }) })
         .then(response => response.json().then(data => ({ ok: response.ok, data })))
-        .then(({ ok, data }) => { adminMensagem.textContent = data.mensagem || data.erro; if (ok) ativarAreaAdmin(); });
+        .then(({ ok, data }) => {
+            adminMensagem.textContent = ok ? data.mensagem : 'A senha está incorreta';
+            if (ok) ativarAreaAdmin();
+        });
 });
 document.getElementById('sortearButton').addEventListener('click', () => {
     const botao = document.getElementById('sortearButton');
@@ -180,7 +213,7 @@ document.getElementById('sortearButton').addEventListener('click', () => {
 document.getElementById('salvarEdicaoButton').addEventListener('click', () => {
     const data = document.getElementById('servicoParaEditar').value;
     const ids = [...document.getElementById('coroinhasDoServico').selectedOptions].map(opcao => Number(opcao.value));
-    fetch('/api/admin/escala', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ data, coroinha_ids: ids }) })
+    fetch('/api/admin/escala', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ano: anoEscala, mes: mesEscala + 1, data, coroinha_ids: ids }) })
         .then(response => response.json().then(resultado => ({ ok: response.ok, resultado })))
         .then(({ ok, resultado }) => { adminMensagem.textContent = ok ? 'Alteração salva na escala publicada.' : resultado.erro; if (ok) { escalaAtual = resultado; montarCalendario(); montarEditorManual(); } });
 });

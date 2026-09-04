@@ -11,7 +11,29 @@
 </head>
 
 <body>
-    <div class="app-shell">
+    <section class="welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
+        <div class="welcome-card">
+            <p class="eyebrow">Escala mensal</p>
+            <h1 id="welcomeTitle">Escala dos coroinhas</h1>
+            <p>Escolha como deseja acessar a escala.</p>
+            <div class="access-options">
+                <button type="button" class="access-button access-admin" id="acessarAdminButton">Acessar área do
+                    administrador</button>
+                <button type="button" class="access-button access-coroinha" id="acessarCoroinhaButton">Acessar área do
+                    coroinha</button>
+            </div>
+            <form class="welcome-login" id="welcomeLogin" hidden>
+                <label for="senhaInicial">Senha do administrador</label>
+                <div class="welcome-login-row">
+                    <input type="password" id="senhaInicial" autocomplete="current-password" required>
+                    <button type="submit" class="button button-primary">Entrar</button>
+                </div>
+                <p class="login-error" id="loginErro" role="alert"></p>
+            </form>
+        </div>
+    </section>
+
+    <div class="app-shell" id="appShell" hidden>
         <header class="page-header">
             <div>
                 <p class="eyebrow">Planejamento mensal</p>
