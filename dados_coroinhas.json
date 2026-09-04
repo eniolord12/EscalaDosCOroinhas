@@ -1,1 +1,1426 @@
-[]
+﻿[
+    {
+        "id":  1,
+        "nome_completo":  "Alice",
+        "nome_escala":  "Alice",
+        "data_nascimento":  "19/06/2019",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  2,
+        "nome_completo":  "Ana Julia",
+        "nome_escala":  "Ana Julia",
+        "data_nascimento":  "22/03/2016",
+        "idade":  10,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  4,
+        "nome_completo":  "Angelina",
+        "nome_escala":  "Angelina",
+        "data_nascimento":  "21/05/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  5,
+        "nome_completo":  "Bernardo Gonçalves Lourenço",
+        "nome_escala":  "Bernardo Gonçalves Lourenço",
+        "data_nascimento":  "31/12/2020",
+        "idade":  5,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  14,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  6,
+        "nome_completo":  "Clara Helena",
+        "nome_escala":  "Clara Helena",
+        "data_nascimento":  "23/05/2016",
+        "idade":  10,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  1,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  7,
+        "nome_completo":  "Cristiano",
+        "nome_escala":  "Cristiano",
+        "data_nascimento":  "05/02/2012",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  2,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  8,
+        "nome_completo":  "Daniel",
+        "nome_escala":  "Daniel",
+        "data_nascimento":  "11/10/2016",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  9,
+        "nome_completo":  "Davi",
+        "nome_escala":  "Davi",
+        "data_nascimento":  "16/01/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  12,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  11,
+        "nome_completo":  "Eliza Martins Fernandes",
+        "nome_escala":  "Eliza Martins Fernandes",
+        "data_nascimento":  "22/05/2016",
+        "idade":  10,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  3,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  12,
+        "nome_completo":  "Emanuel",
+        "nome_escala":  "Emanuel",
+        "data_nascimento":  "24/08/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  1,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  14,
+        "nome_completo":  "Fernanda",
+        "nome_escala":  "Fernanda",
+        "data_nascimento":  "04/04/2019",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  15,
+        "nome_completo":  "Gabriel Lima",
+        "nome_escala":  "Gabriel Lima",
+        "data_nascimento":  "18/10/2011",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  16,
+        "nome_completo":  "Gabriel Sebastião",
+        "nome_escala":  "Gabriel Sebastião",
+        "data_nascimento":  "14/07/2015",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  62,
+        "nome_completo":  "Gustavo Andrade Moreira",
+        "nome_escala":  "Gustavo Andrade Moreira",
+        "data_nascimento":  "5/6/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  3,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  17,
+        "nome_completo":  "Heitor",
+        "nome_escala":  "Heitor",
+        "data_nascimento":  "30/03/2016",
+        "idade":  10,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  4,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  18,
+        "nome_completo":  "Helen Vitória",
+        "nome_escala":  "Helen Vitória",
+        "data_nascimento":  "12/01/2017",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  19,
+        "nome_completo":  "Helena",
+        "nome_escala":  "Helena",
+        "data_nascimento":  "29/11/2016",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  20,
+        "nome_completo":  "Henrique Queiroz",
+        "nome_escala":  "Henrique Queiroz",
+        "data_nascimento":  "12/11/2018",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  21,
+        "nome_completo":  "João Lucas Gomes Silva",
+        "nome_escala":  "João Lucas Gomes Silva",
+        "data_nascimento":  "15/11/2018",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  23,
+        "nome_completo":  "José Augusto",
+        "nome_escala":  "José Augusto",
+        "data_nascimento":  "15/06/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  "Restrições só no domingo"
+    },
+    {
+        "id":  24,
+        "nome_completo":  "Julia",
+        "nome_escala":  "Julia",
+        "data_nascimento":  "24/10/2014",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  5,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  26,
+        "nome_completo":  "Kemily",
+        "nome_escala":  "Kemily",
+        "data_nascimento":  "15/12/2008",
+        "idade":  17,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  27,
+        "nome_completo":  "Killian Otavio",
+        "nome_escala":  "Killian Otavio",
+        "data_nascimento":  "14/12/2018",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  11,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  28,
+        "nome_completo":  "Laila Mariany",
+        "nome_escala":  "Laila Mariany",
+        "data_nascimento":  "08/03/2013",
+        "idade":  13,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  29,
+        "nome_completo":  "Lorrayne",
+        "nome_escala":  "Lorrayne",
+        "data_nascimento":  "13/02/2017",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  9,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  30,
+        "nome_completo":  "Manuela",
+        "nome_escala":  "Manuela",
+        "data_nascimento":  "17/08/2012",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Alto",
+        "observacao":  ""
+    },
+    {
+        "id":  31,
+        "nome_completo":  "Maria Alice Oliveira Costa",
+        "nome_escala":  "Maria Alice Oliveira Costa",
+        "data_nascimento":  "01/09/2020",
+        "idade":  6,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  13,
+        "conhecimento":  "Baixo",
+        "observacao":  "Dias Impares"
+    },
+    {
+        "id":  32,
+        "nome_completo":  "Maria Clara",
+        "nome_escala":  "Maria Clara",
+        "data_nascimento":  "05/03/2013",
+        "idade":  13,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Alto",
+        "observacao":  ""
+    },
+    {
+        "id":  33,
+        "nome_completo":  "Maria Eduarda Lima",
+        "nome_escala":  "Maria Eduarda Lima",
+        "data_nascimento":  "04/06/2012",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  34,
+        "nome_completo":  "Maria Eduarda Procopio",
+        "nome_escala":  "Maria Eduarda Procopio",
+        "data_nascimento":  "10/03/2019",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  36,
+        "nome_completo":  "Maria Eduarda Souza Fonseca",
+        "nome_escala":  "Maria Eduarda Souza Fonseca",
+        "data_nascimento":  "18/08/2014",
+        "idade":  12,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  4,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  37,
+        "nome_completo":  "Maria Eduarda Torres",
+        "nome_escala":  "Maria Eduarda Torres",
+        "data_nascimento":  "04/01/2012",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Alto",
+        "observacao":  ""
+    },
+    {
+        "id":  38,
+        "nome_completo":  "Maria Julia",
+        "nome_escala":  "Maria Julia",
+        "data_nascimento":  "24/10/2012",
+        "idade":  13,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  11,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  40,
+        "nome_completo":  "Matheus",
+        "nome_escala":  "Matheus",
+        "data_nascimento":  "16/09/2017",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  6,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  41,
+        "nome_completo":  "Micael",
+        "nome_escala":  "Micael",
+        "data_nascimento":  "03/10/2017",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  13,
+        "conhecimento":  "Médio",
+        "observacao":  "Dias Impares"
+    },
+    {
+        "id":  42,
+        "nome_completo":  "Miguel César",
+        "nome_escala":  "Miguel César",
+        "data_nascimento":  "31/03/2015",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  2,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  43,
+        "nome_completo":  "Miguel Gonçalves",
+        "nome_escala":  "Miguel Gonçalves",
+        "data_nascimento":  "16/01/2015",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  44,
+        "nome_completo":  "Miguel José",
+        "nome_escala":  "Miguel José",
+        "data_nascimento":  "06/02/2018",
+        "idade":  8,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  45,
+        "nome_completo":  "Miguel Souza Fonseca",
+        "nome_escala":  "Miguel Souza Fonseca",
+        "data_nascimento":  "11/02/2017",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  4,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  46,
+        "nome_completo":  "Milena Carolina",
+        "nome_escala":  "Milena Carolina",
+        "data_nascimento":  "30/08/2019",
+        "idade":  7,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  7,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  47,
+        "nome_completo":  "Murilo",
+        "nome_escala":  "Murilo",
+        "data_nascimento":  "11/03/2015",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  14,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  48,
+        "nome_completo":  "Murilo Augusto",
+        "nome_escala":  "Murilo Augusto",
+        "data_nascimento":  "11/01/2016",
+        "idade":  10,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  7,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  49,
+        "nome_completo":  "Nathalia",
+        "nome_escala":  "Nathalia",
+        "data_nascimento":  "26/11/2011",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  8,
+        "conhecimento":  "Médio",
+        "observacao":  "15 em 15 dias"
+    },
+    {
+        "id":  50,
+        "nome_completo":  "Nicolas Gabriel",
+        "nome_escala":  "Nicolas Gabriel",
+        "data_nascimento":  "02/12/2011",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  1,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  51,
+        "nome_completo":  "Pedro Davi",
+        "nome_escala":  "Pedro Davi",
+        "data_nascimento":  "25/07/2012",
+        "idade":  14,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  5,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  52,
+        "nome_completo":  "Pedro Henrique",
+        "nome_escala":  "Pedro Henrique",
+        "data_nascimento":  "08/03/2008",
+        "idade":  18,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  53,
+        "nome_completo":  "Pedro Miguel",
+        "nome_escala":  "Pedro Miguel",
+        "data_nascimento":  "22/10/2016",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  54,
+        "nome_completo":  "Rayan Miguel Costa Mendes",
+        "nome_escala":  "Rayan Miguel Costa Mendes",
+        "data_nascimento":  "01/11/2014",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  3,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  55,
+        "nome_completo":  "Romario",
+        "nome_escala":  "Romario",
+        "data_nascimento":  "10/12/2014",
+        "idade":  11,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  8,
+        "conhecimento":  "Médio",
+        "observacao":  "15 em 15 dias"
+    },
+    {
+        "id":  56,
+        "nome_completo":  "Ruan Pietro",
+        "nome_escala":  "Ruan Pietro",
+        "data_nascimento":  "14/03/2017",
+        "idade":  9,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  57,
+        "nome_completo":  "Sophia Mendes Pereira",
+        "nome_escala":  "Sophia Mendes Pereira",
+        "data_nascimento":  "",
+        "idade":  126,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  58,
+        "nome_completo":  "Thayná Cristina",
+        "nome_escala":  "Thayná Cristina",
+        "data_nascimento":  "16/05/2014",
+        "idade":  12,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Sabado",
+                                              "Domingo"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  60,
+        "nome_completo":  "Valentyne",
+        "nome_escala":  "Valentyne",
+        "data_nascimento":  "25/12/2012",
+        "idade":  13,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  ""
+    },
+    {
+        "id":  61,
+        "nome_completo":  "Vitória de Araújo Carvalho",
+        "nome_escala":  "Vitória de Araújo Carvalho",
+        "data_nascimento":  "13/7/2020",
+        "idade":  6,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  12,
+        "conhecimento":  "Baixo",
+        "observacao":  ""
+    },
+    {
+        "id":  63,
+        "nome_completo":  "Vitória Emanuely",
+        "nome_escala":  "Vitória Emanuely",
+        "data_nascimento":  "28/05/2011",
+        "idade":  15,
+        "status_ativo":  true,
+        "bloqueios":  {
+                          "dias_semana":  [
+                                              "Quarta",
+                                              "Quinta"
+                                          ],
+                          "datas_especificas":  [
+
+                                                ],
+                          "semana_especifica":  [
+
+                                                ]
+                      },
+        "fixos":  [
+
+                  ],
+        "vinculo_id":  null,
+        "conhecimento":  "Médio",
+        "observacao":  null
+    }
+]
