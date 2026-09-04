@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Escala mensal dos coroinhas.">
     <meta name="author" content="Enio Antonio S. Júnior">
-    <title>Escala dos Coroinhas | Outubro 2026</title>
+    <title>Escala dos Coroinhas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,7 +16,7 @@
             <div>
                 <p class="eyebrow">Planejamento mensal</p>
                 <h1>Escala dos coroinhas</h1>
-                <p class="subtitle">Organize os serviços de outubro antes de publicar a escala.</p>
+                <p class="subtitle">Consulte e organize os serviços de cada competência.</p>
             </div>
             <div class="header-status" aria-live="polite">
                 <span class="status-dot"></span>
@@ -28,9 +28,13 @@
             <section class="month-toolbar" aria-label="Controles da escala">
                 <div>
                     <p class="eyebrow">Mês da escala</p>
-                    <h2>Outubro <span>2026</span></h2>
+                    <h2><span id="mesAtual">Outubro</span> <span id="anoAtual">2026</span></h2>
                 </div>
                 <div class="toolbar-actions">
+                    <button type="button" class="button button-secondary" id="mesAnteriorButton"
+                        aria-label="Mês anterior">Anterior</button>
+                    <button type="button" class="button button-secondary" id="proximoMesButton"
+                        aria-label="Próximo mês">Próximo</button>
                     <button type="button" class="button button-secondary" id="hojeButton">Ir para hoje</button>
                     <button type="button" class="button button-primary" id="imprimirButton">Imprimir escala</button>
                     <button type="button" class="button button-admin" id="adminButton">Área do administrador</button>
@@ -44,9 +48,10 @@
                     <p id="adminMensagem">Somente o administrador pode sortear e substituir a escala publicada.</p>
                 </div>
                 <div class="admin-actions">
-                    <input type="password" id="senhaAdmin" placeholder="Senha do administrador" aria-label="Senha do administrador">
+                    <input type="password" id="senhaAdmin" placeholder="Senha do administrador"
+                        aria-label="Senha do administrador">
                     <button type="button" class="button button-primary" id="loginButton">Entrar</button>
-                    <button type="button" class="button button-primary" id="sortearButton" hidden>Sortear outubro</button>
+                    <button type="button" class="button button-primary" id="sortearButton" hidden>Sortear mês</button>
                 </div>
                 <div class="admin-workspace" id="adminWorkspace" hidden>
                     <div class="admin-section">
@@ -59,8 +64,10 @@
                         <h3>Alterar coroinhas de um serviço</h3>
                         <div class="edit-controls">
                             <select id="servicoParaEditar" aria-label="Serviço para editar"></select>
-                            <select id="coroinhasDoServico" multiple aria-label="Coroinhas escalados no serviço"></select>
-                            <button type="button" class="button button-secondary" id="salvarEdicaoButton">Salvar alteração</button>
+                            <select id="coroinhasDoServico" multiple
+                                aria-label="Coroinhas escalados no serviço"></select>
+                            <button type="button" class="button button-secondary" id="salvarEdicaoButton">Salvar
+                                alteração</button>
                         </div>
                     </div>
                     <div class="admin-section">
@@ -75,11 +82,11 @@
                 <div class="calendar-heading">
                     <div>
                         <p class="eyebrow">Visão mensal</p>
-                        <h2 id="tituloCalendario">Serviços de outubro</h2>
+                        <h2 id="tituloCalendario">Serviços do mês</h2>
                     </div>
                     <span class="calendar-note" id="statusEscala">Escala ainda não sorteada</span>
                 </div>
-                <div class="calendar" id="calendario" aria-label="Calendário de outubro de 2026"></div>
+                <div class="calendar" id="calendario" aria-label="Calendário do mês selecionado"></div>
             </section>
         </main>
     </div>

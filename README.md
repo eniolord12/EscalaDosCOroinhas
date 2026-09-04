@@ -66,7 +66,9 @@ Somente quem tiver essa senha consegue gerar e substituir a escala; os demais
 usuários apenas visualizam a escala publicada.
 
 Na página, clique em **Área do administrador** e informe a senha. Depois do
-login, você poderá marcar ou desmarcar cada dia de outubro, definir o horário e
-a quantidade de vagas, consultar todos os nomes cadastrados, sortear a escala
-e alterar manualmente os coroinhas de qualquer serviço já publicado.
+login, você poderá navegar pelos meses e anos, marcar ou desmarcar cada dia,
+definir horário e quantidade de vagas, consultar todos os nomes cadastrados,
+sortear a escala e alterar manualmente os coroinhas de qualquer serviço já
+publicado. Cada escala mensal fica salva separadamente na pasta `escalas`, sem
+substituir meses anteriores ou posteriores.
 

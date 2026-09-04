@@ -4,10 +4,11 @@ const statusEscala = document.getElementById('statusEscala');
 const adminMensagem = document.getElementById('adminMensagem');
 const nomesDias = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const nomesMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-const anoEscala = 2026;
-const mesEscala = 9;
+let anoEscala = 2026;
+let mesEscala = 9;
 let escalaAtual = null;
 let coroinhasAdmin = [];
+let adminLogado = false;
 
 function dataLocal(ano, mes, dia) {
     return new Date(ano, mes, dia).toISOString().slice(0, 10);
@@ -49,15 +50,23 @@ function montarCalendario() {
     for (let dia = 1; dia <= ultimoDia.getDate(); dia += 1) {
         calendario.appendChild(criarCelulaDia(new Date(anoEscala, mesEscala, dia)));
     }
+    document.getElementById('mesAtual').textContent = nomesMeses[mesEscala];
+    document.getElementById('anoAtual').textContent = anoEscala;
+    document.getElementById('tituloCalendario').textContent = `Serviços de ${nomesMeses[mesEscala].toLowerCase()}`;
+    document.title = `Escala dos Coroinhas | ${nomesMeses[mesEscala]} ${anoEscala}`;
 }
 
 function carregarEscala() {
-    return fetch('/api/escala').then(response => response.json()).then(escala => {
+    return fetch(`/api/escala?ano=${anoEscala}&mes=${mesEscala + 1}`).then(response => response.json()).then(escala => {
         escalaAtual = escala;
         const total = Object.keys(escala.participacoes || {}).length;
         resumoCoroinhas.textContent = total ? `${total} coroinhas na escala` : 'Escala ainda não sorteada';
         statusEscala.textContent = escala.servicos?.length ? `Gerada em ${escala.gerada_em.replace('T', ' ')}` : 'Escala ainda não sorteada';
         montarCalendario();
+        if (adminLogado) {
+            montarConfiguracao();
+            montarEditorManual();
+        }
     });
 }
 
@@ -142,6 +151,7 @@ function atualizarCoroinhasDoServico() {
 }
 
 function ativarAreaAdmin() {
+    adminLogado = true;
     document.getElementById('senhaAdmin').hidden = true;
     document.getElementById('loginButton').hidden = true;
     document.getElementById('sortearButton').hidden = false;
@@ -183,5 +193,23 @@ document.getElementById('hojeButton').addEventListener('click', () => {
     diaAtual?.classList.add('today-focus');
     window.setTimeout(() => diaAtual?.classList.remove('today-focus'), 1400);
 });
+
+function mudarMes(delta) {
+    mesEscala += delta;
+    if (mesEscala < 0) {
+        mesEscala = 11;
+        anoEscala -= 1;
+    } else if (mesEscala > 11) {
+        mesEscala = 0;
+        anoEscala += 1;
+    }
+    carregarEscala().catch(() => {
+        escalaAtual = { servicos: [], avisos: [] };
+        montarCalendario();
+    });
+}
+
+document.getElementById('mesAnteriorButton').addEventListener('click', () => mudarMes(-1));
+document.getElementById('proximoMesButton').addEventListener('click', () => mudarMes(1));
 
 carregarEscala().catch(() => { resumoCoroinhas.textContent = 'Dados indisponíveis'; montarCalendario(); });

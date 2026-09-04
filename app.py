@@ -13,6 +13,7 @@ app.secret_key = os.environ.get('ESCALA_SECRET_KEY', 'chave-local-da-escala')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ARQUIVO_JSON = os.path.join(BASE_DIR, 'dados_coroinhas.json')
 ARQUIVO_ESCALA = os.path.join(BASE_DIR, 'escala_mensal.json')
+PASTA_ESCALAS = os.path.join(BASE_DIR, 'escalas')
 SENHA_ADMIN = 'CFojp-1992!'
 
 CONFIGURACAO_MISSA = {
@@ -37,18 +38,27 @@ def carregar_dados():
                 return []
     return []
 
-def carregar_escala():
-    if not os.path.exists(ARQUIVO_ESCALA):
+def caminho_escala(ano, mes):
+    return os.path.join(PASTA_ESCALAS, f'escala_{ano}_{mes:02d}.json')
+
+
+def carregar_escala(ano=None, mes=None):
+    arquivo = ARQUIVO_ESCALA if ano is None or mes is None else caminho_escala(ano, mes)
+    if ano == 2026 and mes == 10 and not os.path.exists(arquivo):
+        arquivo = ARQUIVO_ESCALA
+    if not os.path.exists(arquivo):
         return None
     try:
-        with open(ARQUIVO_ESCALA, 'r', encoding='utf-8') as arquivo:
-            return json.load(arquivo)
+        with open(arquivo, 'r', encoding='utf-8') as escala:
+            return json.load(escala)
     except json.JSONDecodeError:
         return None
 
 
 def salvar_escala(escala):
-    with open(ARQUIVO_ESCALA, 'w', encoding='utf-8') as arquivo:
+    os.makedirs(PASTA_ESCALAS, exist_ok=True)
+    arquivo_destino = caminho_escala(escala['ano'], escala['mes'])
+    with open(arquivo_destino, 'w', encoding='utf-8') as arquivo:
         json.dump(escala, arquivo, ensure_ascii=False, indent=4)
 
 
@@ -196,7 +206,14 @@ def pagina_inicial():
 
 @app.route('/api/escala', methods=['GET'])
 def visualizar_escala():
-    return jsonify(carregar_escala() or {'servicos': [], 'avisos': []})
+    try:
+        ano = int(request.args.get('ano', 2026))
+        mes = int(request.args.get('mes', 10))
+        if mes < 1 or mes > 12:
+            raise ValueError
+    except ValueError:
+        return jsonify({'erro': 'Ano ou mês inválido.'}), 400
+    return jsonify(carregar_escala(ano, mes) or {'ano': ano, 'mes': mes, 'servicos': [], 'avisos': []})
 
 
 def administrador_exigido():
@@ -249,7 +266,8 @@ def editar_escala():
     if not administrador_exigido():
         return jsonify({'erro': 'Faça login como administrador.'}), 401
     dados = request.get_json(silent=True) or {}
-    escala = carregar_escala() or {'servicos': [], 'avisos': []}
+    escala = carregar_escala(int(dados.get('ano', 2026)), int(dados.get('mes', 10)))
+    escala = escala or {'servicos': [], 'avisos': []}
     servico = next((item for item in escala['servicos'] if item['data'] == dados.get('data')), None)
     if not servico:
         return jsonify({'erro': 'Serviço não encontrado.'}), 404
