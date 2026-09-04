@@ -24,6 +24,10 @@ def sem_acento(valor):
     return ''.join(char for char in texto if unicodedata.category(char) != 'Mn').lower()
 
 
+def nome_dia_comparavel(valor):
+    return sem_acento(valor).replace('-feira', '').replace('feira', '').strip()
+
+
 def carregar_dados():
     try:
         with ARQUIVO_DADOS.open('r', encoding='utf-8') as arquivo:
@@ -37,8 +41,10 @@ def carregar_dados():
 
 def esta_disponivel(coroinha, data_atual):
     bloqueios = coroinha.get('bloqueios') or {}
-    dia = sem_acento(DIAS_SEMANA[data_atual.weekday()])
-    dias_bloqueados = {sem_acento(item) for item in bloqueios.get('dias_semana', [])}
+    dia = nome_dia_comparavel(DIAS_SEMANA[data_atual.weekday()])
+    dias_bloqueados = {
+        nome_dia_comparavel(item) for item in bloqueios.get('dias_semana', [])
+    }
     datas_bloqueadas = {int(item) for item in bloqueios.get('datas_especificas', [])}
     return dia not in dias_bloqueados and data_atual.day not in datas_bloqueadas
 
@@ -46,6 +52,19 @@ def esta_disponivel(coroinha, data_atual):
 def grupos_de_coroinhas(coroinhas):
     por_id = {item['id']: item for item in coroinhas}
     relacionados = {item['id']: set() for item in coroinhas}
+    por_vinculo = {}
+    for item in coroinhas:
+        vinculo_id = item.get('vinculo_id')
+        if vinculo_id is not None:
+            por_vinculo.setdefault(vinculo_id, []).append(item['id'])
+
+    for ids_vinculados in por_vinculo.values():
+        for id_atual in ids_vinculados:
+            relacionados[id_atual].update(
+                id_vinculado for id_vinculado in ids_vinculados
+                if id_vinculado != id_atual
+            )
+
     for item in coroinhas:
         vinculo_id = item.get('vinculo_id')
         if vinculo_id in por_id:
@@ -70,19 +89,43 @@ def grupos_de_coroinhas(coroinhas):
     return grupos
 
 
+def validar_vinculos(escala, coroinhas):
+    datas_por_id = {str(item['id']): set() for item in coroinhas}
+    for servico in escala:
+        data_servico = servico['data']
+        for id_atual in servico['coroinha_ids']:
+            datas_por_id[str(id_atual)].add(data_servico)
+
+    por_id = {str(item['id']): item for item in coroinhas}
+    for item in coroinhas:
+        id_atual = str(item['id'])
+        vinculo_id = item.get('vinculo_id')
+        if vinculo_id is None or str(vinculo_id) not in por_id:
+            continue
+        id_vinculado = str(vinculo_id)
+        if datas_por_id[id_atual] != datas_por_id[id_vinculado]:
+            raise RuntimeError(
+                f'Vinculo quebrado entre os IDs {id_atual} e {id_vinculado}.'
+            )
+
+
 def semana_do_mes(data_atual):
     return ((data_atual.day - 1) // 7) + 1
 
 
 def grupo_tem_dia_fixo(grupo, data_atual):
-    dia_atual = sem_acento(DIAS_SEMANA[data_atual.weekday()])
+    dia_atual = nome_dia_comparavel(DIAS_SEMANA[data_atual.weekday()])
     semana_atual = semana_do_mes(data_atual)
     return any(
         int(regra.get('semana', -1)) == semana_atual
-        and sem_acento(regra.get('dia', '')) == dia_atual
+        and nome_dia_comparavel(regra.get('dia', '')) == dia_atual
         for item in grupo
         for regra in item.get('fixos', [])
     )
+
+
+def grupo_tem_regra_fixa(grupo):
+    return any(item.get('fixos') for item in grupo)
 
 
 def datas_das_missas(ano, mes, semanas, quantidades):
@@ -116,6 +159,8 @@ def sortear_escala(
         for grupo in grupos:
             ids = [str(item['id']) for item in grupo]
             if not all(esta_disponivel(item, data_atual) for item in grupo):
+                continue
+            if grupo_tem_regra_fixa(grupo) and not grupo_tem_dia_fixo(grupo, data_atual):
                 continue
             if any(ultima_data_por_id.get(id_atual) == data_atual - timedelta(days=1) for id_atual in ids):
                 continue
@@ -178,7 +223,7 @@ def sortear_escala(
         nomes = ', '.join(item.get('nome_escala') or item.get('nome_completo') for item in abaixo_do_minimo)
         avisos.append(f'Abaixo do minimo de {minimo_mensal}: {nomes}.')
 
-    return {
+    escala = {
         'ano': ano,
         'mes': mes,
         'semanas': semanas,
@@ -190,6 +235,8 @@ def sortear_escala(
         'participacoes': participacoes,
         'avisos': avisos,
     }
+    validar_vinculos(servicos, coroinhas)
+    return escala
 
 
 def perguntar_inteiro(pergunta, minimo=None, maximo=None, padrao=None):

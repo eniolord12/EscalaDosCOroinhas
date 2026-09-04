@@ -47,6 +47,16 @@ aplica a regra de não escalar a mesma pessoa em dias consecutivos. Quando as
 regras forem incompatíveis, o programa salva a melhor escala possível e registra
 um aviso no JSON.
 
+Pessoas relacionadas por `vinculo_id` são tratadas como um único grupo: ou todos
+do vínculo servem na mesma missa, ou nenhum deles serve. O programa também
+valida essa regra antes de salvar a escala. Quando um cadastro possui `fixos`,
+ele não participa do sorteio comum: só pode ser escalado nas semanas e dias
+informados em suas regras fixas.
+
+No cadastro, `bloqueios.dias_semana` impede o coroinha de participar de qualquer
+missa daquele dia da semana durante o mês. `bloqueios.datas_especificas` impede
+a participação nos números de dia informados, como `10` ou `25`.
+
 Cada escala é salva em `escalas/escala_ANO_MES.json`. O cadastro continua sendo
 mantido manualmente em `dados_coroinhas.json`; os campos `dias_semana`,
 `datas_especificas`, `fixos` e `vinculo_id` controlam as regras do sorteio.
