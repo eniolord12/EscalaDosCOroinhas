@@ -1,13 +1,10 @@
 from datetime import date, datetime, timedelta
 from flask import Flask, jsonify, request, send_from_directory, session
-from flask_cors import CORS
 import json
 import os
 import random
 
 app = Flask(__name__)
-# Libera o CORS para que o seu HTML (mesmo rodando num arquivo local) possa acessar a API
-CORS(app) 
 app.secret_key = os.environ.get('ESCALA_SECRET_KEY', 'chave-local-da-escala')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -204,6 +201,13 @@ def pagina_inicial():
     return send_from_directory(BASE_DIR, 'index.html')
 
 
+@app.route('/<path:arquivo>')
+def arquivos_estaticos(arquivo):
+    if arquivo not in {'style.css', 'script.js'}:
+        return jsonify({'erro': 'Arquivo não encontrado.'}), 404
+    return send_from_directory(BASE_DIR, arquivo)
+
+
 @app.route('/api/escala', methods=['GET'])
 def visualizar_escala():
     try:
@@ -289,4 +293,4 @@ def editar_escala():
 if __name__ == '__main__':
     # Inicia o servidor na porta 5000
     print("Servidor rodando em http://localhost:5000")
-    app.run(debug=True, port=5000)
+    app.run(host='127.0.0.1', debug=True, port=5000)

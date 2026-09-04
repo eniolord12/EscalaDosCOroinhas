@@ -1,7 +1,7 @@
 # Escala dos Coroinhas
 
 Os cadastros são mantidos manualmente em `dados_coroinhas.json`. Não é necessário
-usar banco de dados nem cadastrar pelo formulário.
+usar banco de dados, internet, site externo ou serviço de API externo.
 
 ## Como cadastrar
 
@@ -33,6 +33,10 @@ python app.py
 
 Acesse `http://localhost:5000`. Os registros do arquivo são usados internamente
 para montar a escala e não são exibidos aos usuários públicos.
+
+O Flask funciona somente como servidor local do computador (`127.0.0.1`). As
+rotas internas usadas pela página não acessam a internet: elas apenas leem e
+gravam os arquivos JSON do próprio projeto.
 
 ## Sorteio da escala
 
